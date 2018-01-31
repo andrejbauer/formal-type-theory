@@ -4,7 +4,7 @@ LATEX_DIR = latex
 
 default: library latex/rules.pdf
 
-.PHONY: library clean
+.PHONY: library clean doc
 
 src/Makefile: src/_CoqProject
 	cd src && $(COQMAKEFILE) -f _CoqProject -o Makefile
@@ -17,6 +17,9 @@ latex/rulesParanoid.pdf:
 
 library: src/Makefile
 	$(MAKE) -C $(CODE_DIR)
+
+doc:
+	$(MAKE) -C $(CODE_DIR) html
 
 clean: src/Makefile
 	$(MAKE) -C $(LATEX_DIR) clean
